@@ -97,9 +97,26 @@ docs/
 ```sh
 git clone git@github.com:thepictishbeast/SacredVote-Email-Config.git
 cd SacredVote-Email-Config
-# deploy/ scripts are the v0.1 follow-up — for now this repo is the
-# inventory so nothing is lost; the automation ships next.
+
+# 1. Dry-run: prints unified diffs for every /etc file the overlay
+#    would change, exits 1 if any differ. Safe to run as non-root.
+./deploy.sh
+
+# 2. Apply (writes /etc — needs root). Confirms before each overwrite;
+#    use --yes to skip the per-file confirm.
+sudo ./deploy.sh --apply
+
+# 3. Mint secrets per docs/SECRETS.md (dovecot user hashes, DKIM
+#    private keys, env tokens). deploy.sh NEVER writes these.
+
+# 4. Validate end-to-end: mail-admin validate
 ```
+
+`deploy.sh` is conservative by design: dry-run by default, idempotent,
+diff-before-write, and *never* touches `/etc/dovecot/users`,
+`opendkim/keys/*.private`, or `env/*.env` (those follow `SECRETS.md`).
+HARD rules from `feedback_no_mail_password_rotation` and
+`feedback_no_tim_email_sender` are enforced in the script.
 
 ## Secret regeneration
 
