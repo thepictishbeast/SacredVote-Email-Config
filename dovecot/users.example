@@ -1,0 +1,15 @@
+# === sacred.vote — Platform accounts ===
+tim@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/tim::
+admin@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/admin::
+noreply@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/noreply::
+alerts@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/alerts::
+support@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/support::
+contact@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/contact::
+info@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/info::
+router@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/router::
+vault@sacred.vote:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacred.vote/vault::
+
+# === sacredvote.org — Organizational/legal accounts ===
+legal@sacredvote.org:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacredvote.org/legal::
+privacy@sacredvote.org:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacredvote.org/privacy::
+security@sacredvote.org:{SSHA512}<REDACTED-DOVECOT-HASH>::5000:5000::/var/mail/vhosts/sacredvote.org/security::

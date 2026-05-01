@@ -1,0 +1,18 @@
+# Virtual mailboxes — real accounts with Maildir storage
+# Format: address    domain/user/
+
+# === sacred.vote — Platform accounts ===
+tim@sacred.vote              sacred.vote/tim/
+admin@sacred.vote            sacred.vote/admin/
+noreply@sacred.vote          sacred.vote/noreply/
+alerts@sacred.vote           sacred.vote/alerts/
+support@sacred.vote          sacred.vote/support/
+contact@sacred.vote          sacred.vote/contact/
+info@sacred.vote             sacred.vote/info/
+router@sacred.vote           sacred.vote/router/
+vault@sacred.vote            sacred.vote/vault/
+
+# === sacredvote.org — Organizational/legal accounts ===
+legal@sacredvote.org         sacredvote.org/legal/
+privacy@sacredvote.org       sacredvote.org/privacy/
+security@sacredvote.org      sacredvote.org/security/

@@ -1,0 +1,72 @@
+# PlausiDen Sovereign Mail Server — Postfix main configuration
+# Handles sending and receiving for sacred.vote, sacredvote.org
+
+# Basic identity
+myhostname = mail.sacred.vote
+mydomain = sacred.vote
+myorigin = $mydomain
+mydestination = localhost
+
+# Virtual domains — handle mail for all three domains
+virtual_mailbox_domains = sacred.vote sacredvote.org
+virtual_mailbox_base = /var/mail/vhosts
+virtual_mailbox_maps = hash:/etc/postfix/vmailbox
+virtual_alias_maps = hash:/etc/postfix/virtual
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+
+# TLS — Let's Encrypt cert for mail.sacred.vote
+smtpd_tls_cert_file = /etc/letsencrypt/live/mail.sacred.vote/fullchain.pem
+smtpd_tls_key_file = /etc/letsencrypt/live/mail.sacred.vote/privkey.pem
+smtpd_tls_security_level = may
+smtpd_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
+smtp_tls_security_level = encrypt
+smtp_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
+smtp_tls_CApath = /etc/ssl/certs
+
+# DKIM signing via OpenDKIM milter
+milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = inet:localhost:8891
+non_smtpd_milters = inet:localhost:8891
+
+# Security
+smtpd_banner = $myhostname ESMTP
+biff = no
+append_dot_mydomain = no
+smtpd_helo_required = yes
+
+smtpd_recipient_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unauth_destination,
+    reject_invalid_hostname,
+    reject_non_fqdn_sender,
+    reject_non_fqdn_recipient,
+    reject_unknown_sender_domain,
+    reject_unknown_recipient_domain
+
+smtpd_relay_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unauth_destination
+
+# Local apps send via localhost — no auth needed
+mynetworks = 127.0.0.0/8 [::1]/128 172.17.0.0/16
+inet_interfaces = all
+inet_protocols = all
+
+# Size limits
+message_size_limit = 10240000
+mailbox_size_limit = 51200000
+
+# Compatibility
+compatibility_level = 3.6
+smtpd_forbid_bare_newline = yes
+smtpd_forbid_unauth_pipelining = yes
+smtputf8_enable = yes
+smtputf8_autodetect_classes = verify
+smtp_header_checks = regexp:/etc/postfix/smtp_header_checks
+disable_vrfy_command = yes
+alias_maps = hash:/etc/aliases

@@ -1,0 +1,52 @@
+server {
+    server_name sacredvote.org www.sacredvote.org;
+
+    # The physical path to your compiled Vite assets
+    root /var/www/sacredvote.org/dist/public;
+    index index.html;
+
+    # ── Security Headers ──────────────────────────────────────────
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # GATE 1: Serve Static Frontend Assets
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # GATE 2: Sovereign API Proxy
+    location /api {
+        proxy_pass http://127.0.0.1:5001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Certbot Cryptographic Links
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/sacredvote.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/sacredvote.org/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+server {
+    if ($host = www.sacredvote.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = sacredvote.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    server_name sacredvote.org www.sacredvote.org;
+    return 404; # managed by Certbot
+}

@@ -1,0 +1,2 @@
+default._domainkey.sacred.vote     sacred.vote:default:/etc/opendkim/keys/sacred.vote/default.private
+default._domainkey.sacredvote.org  sacredvote.org:default:/etc/opendkim/keys/sacredvote.org/default.private

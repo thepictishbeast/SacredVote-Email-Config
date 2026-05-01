@@ -1,0 +1,31 @@
+# Virtual aliases — forwarding from old @sacredvote.org to new @sacred.vote
+# These ensure mail sent to old addresses still arrives at the new mailboxes.
+# Remove these after transition period (30-60 days).
+
+tim@sacredvote.org           tim@sacred.vote
+admin@sacredvote.org         admin@sacred.vote
+noreply@sacredvote.org       noreply@sacred.vote
+alerts@sacredvote.org        alerts@sacred.vote
+support@sacredvote.org       support@sacred.vote
+contact@sacredvote.org       contact@sacred.vote
+info@sacredvote.org          info@sacred.vote
+router@sacredvote.org        router@sacred.vote
+vault@sacredvote.org         vault@sacred.vote
+
+# System role aliases — deliver cron/system/daemon mail into Tim's inbox
+# instead of trying to SMTP it externally (which previously generated
+# infinite bounce loops because mail.sacred.vote was CF-proxied). Added
+# 2026-04-08 as part of task #303.
+root@sacred.vote             alerts@sacred.vote
+root@mail.sacred.vote        alerts@sacred.vote
+postmaster@sacred.vote       alerts@sacred.vote
+postmaster@mail.sacred.vote  alerts@sacred.vote
+postmaster@sacredvote.org    alerts@sacred.vote
+abuse@sacred.vote            alerts@sacred.vote
+abuse@sacredvote.org         alerts@sacred.vote
+hostmaster@sacred.vote       alerts@sacred.vote
+hostmaster@sacredvote.org    alerts@sacred.vote
+webmaster@sacred.vote        alerts@sacred.vote
+webmaster@sacredvote.org     alerts@sacred.vote
+mailer-daemon@sacred.vote    alerts@sacred.vote
+mailer-daemon@mail.sacred.vote alerts@sacred.vote

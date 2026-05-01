@@ -1,0 +1,3 @@
+default._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAygiCEEyaNep/HX5dvDAvhOFbqs5pcenaTF/wGdhW4lkfZ7wA+JFlQZPlUKbEqZFUwQOx/GairKKFEZnlPpRd47kszZ4ntjWQhzPOKrfWJ6HGyGLYBptzG+K/p0F5UvzWTCsqfUuncqILDYzXqqfPzpGNrt6K83HMRQi3RczcfYXmMspQm+QsGvhvQVpEHWdB5qkNvG88wO98kx"
+	  "u61owurgNP1SAQ/fpLNy5UXzOhmvgMYuCEf0PIK3lqImH8kkaDHkF9bn6oRr5EU28JoJIpZRDQV/lJjXBQjoBes6af35w2h98Hzjqj+8sT1oqLx4L1BnESm4QIfrl89I8sQ5ctzQIDAQAB" )  ; ----- DKIM key default for sacredvote.org
