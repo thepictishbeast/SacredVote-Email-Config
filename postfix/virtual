@@ -29,3 +29,12 @@ webmaster@sacred.vote        alerts@sacred.vote
 webmaster@sacredvote.org     alerts@sacred.vote
 mailer-daemon@sacred.vote    alerts@sacred.vote
 mailer-daemon@mail.sacred.vote alerts@sacred.vote
+
+# Press + security role aliases (added 2026-05-17 for task #816 —
+# press-kit copy in client/src/pages/press.tsx points to these
+# addresses; they must accept mail before PRESS_KIT_ENABLED can flip).
+# Forward to alerts@sacred.vote which Tim already monitors.
+press@sacred.vote            alerts@sacred.vote
+press@sacredvote.org         alerts@sacred.vote
+security@sacred.vote         alerts@sacred.vote
+security@sacredvote.org      alerts@sacred.vote
